@@ -1,4 +1,5 @@
-darknet/
-models/*
-data/*
+darknet*
+models*
+data*
+data/plant/*
 

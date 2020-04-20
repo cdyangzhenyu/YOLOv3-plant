@@ -13,8 +13,9 @@ cwd = os.getcwd()
 names_fw = open(names_file, "w")
 train_fw = open(train_file, "w")
 test_fw = open(test_file, "w")
-size = (416, 416)
-bbox_size = 256
+size = (256, 256)
+bbox_size = 250
+classes = []
 # gen images from data/plant/images/
 def prepare_dataset():
     plant_dirs = glob.glob("raw/*")
@@ -24,6 +25,7 @@ def prepare_dataset():
             for cata in catalogs:
                 if t == "train":
                     names_fw.write(cata.split('/')[-1] + "\n")
+                    classes.append(cata.split('/')[-1])
                 img_files = glob.glob("%s/*" % cata)
                 for img_file in img_files:
                     img_new_file = img_file.replace(' ', '_').replace('..', '.')
@@ -37,9 +39,9 @@ def prepare_dataset():
                     shutil.copy(img_file, img_new_path)
                     x = 0.5
                     y = 0.5
-                    w = bbox_size / size[0]
-                    h = bbox_size / size[1]
-                    c = cata.split('/')[-1]
+                    w = float(bbox_size) / size[0]
+                    h = float(bbox_size) / size[1]
+                    c = classes.index(cata.split('/')[-1])
                     txt_path = label_path + img_name.split('.')[0] + '.txt'
                     with open(txt_path, "w") as f:
                         data = "{} {} {} {} {}".format(c, x, y, w, h)

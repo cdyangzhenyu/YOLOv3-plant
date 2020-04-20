@@ -31,10 +31,16 @@ wget https://pjreddie.com/media/files/darknet53.conv.74
 - Train:
 ```
 cd darknet
-./darknet detector train ../cfg/plant.dataset ../cfg/yolov3_tiny.cfg ../models/darknet53.conv.74
+./darknet detector train ../cfg/plant.dataset ../cfg/yolov3_plant.cfg ../models/darknet53.conv.74
 ```
 
 - Test:
 ```
-./darknet detector test ../cfg/plant.dataset ../cfg/yolov3_tiny.cfg ../models/yolov3_plant.backup IMAGE_PATH -i 0 -thresh 0.5
+./darknet detector test ../cfg/plant.dataset ../cfg/yolov3_plant_test.cfg ../models/yolov3_plant.backup strawberry_healthy2.jpg  -i 0 -thresh 0.5
+```
+
+- Use
+```
+cd backup
+cat yolov3_plant.tar.bz2a* | tar xj
 ```
