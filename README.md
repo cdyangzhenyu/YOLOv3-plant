@@ -44,3 +44,10 @@ cd darknet
 cd backup
 cat yolov3_plant.tar.bz2a* | tar xj
 ```
+
+- To tensorflow pb models
+
+```
+cd backup
+python ../../OpenVINO-YoloV3/convert_weights_pb.py --class_names ../data/plant.names.list  --weights_file yolov3_plant.backup.2100 --data_format NHWC
+```
